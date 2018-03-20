@@ -15,11 +15,23 @@ import com.revature.beans.Question;
 @Repository
 public interface QuestionRepository extends JpaRepository<Question, Integer> {
 	
+	/**
+	 * Toggles question status to (in)active based on given information
+	 * 
+	 * @param isActive Sets question to active if true, inactive otherwise
+	 * @param questionId Id of question to be toggled
+	 */
 	@Modifying
 	@Query("update Question q set q.isActive = ?1 where q.questionId = ?2")
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	void toggleQuestionStatusById(Boolean isActive, Integer questionId);
 	
+	/**
+	 * Returns bucket of given Id
+	 * 
+	 * @param bucketId Id of bucet
+	 * @return Bucket of given Id
+	 */
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	List<Question> findByBucketId(Integer bucketId);
 	

@@ -1,5 +1,7 @@
 package com.revature.beans;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,8 +15,10 @@ import javax.persistence.Table;
 
 @Entity 
 @Table(name="QUESTION_TAG_LOOKUP")
-public class QuestionTagLookup {
+public class QuestionTagLookup implements Serializable {
 	
+	private static final long serialVersionUID = -7429128509208659401L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="QUESTION_TAG_LOOKUP_SEQUENCE")
 	@SequenceGenerator(name="QUESTION_TAG_LOOKUP_SEQUENCE",sequenceName="QUESTION_TAG_LOOKUP_SEQUENCE")

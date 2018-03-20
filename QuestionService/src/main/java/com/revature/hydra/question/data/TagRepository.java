@@ -9,6 +9,12 @@ import com.revature.beans.Tag;
 
 public interface TagRepository extends JpaRepository<Tag, Integer> {
 	
+	/**
+	 * Returns tag of given id
+	 * 
+	 * @param tagId Id of tag
+	 * @return Tag of given id
+	 */
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	Tag findByTagId(Integer tagId);
 	

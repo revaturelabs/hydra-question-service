@@ -1,5 +1,7 @@
 package com.revature.beans;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,8 +12,10 @@ import javax.persistence.Table;
 
 @Entity 
 @Table(name="TAG")
-public class Tag {
+public class Tag implements Serializable {
 	
+	private static final long serialVersionUID = -1015737769787058334L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="TAG_SEQUENCE")
 	@SequenceGenerator(name="TAG_SEQUENCE",sequenceName="TAG_SEQUENCE")

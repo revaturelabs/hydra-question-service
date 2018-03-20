@@ -2,6 +2,7 @@ package com.revature.hydra.question.controller;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,16 +21,31 @@ import com.revature.hydra.question.data.TagRepository;
 @RequestMapping("/tag")
 public class TagController {
 	
+	private static final Logger log = Logger.getLogger(QuestionController.class);
+	
 	@Autowired
 	private TagRepository tagRepository;
 	
+	/**
+	 * Returns all tags
+	 * 
+	 * @return List of all tags
+	 */
 	@RequestMapping(value = "/getTags", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Tag>> getAllTags() {
+		log.info("Getting all tags");
 		return new ResponseEntity<>(tagRepository.findAll(), HttpStatus.OK);
 	}
 	
+	/**
+	 * Creates tag by given name
+	 * 
+	 * @param tagName Name of tag to be created
+	 * @return No content
+	 */
 	@RequestMapping(value = "/createNewTag", method = RequestMethod.POST)
 	public ResponseEntity<Void> createNewTag(@RequestParam(value="tagName") String tagName) {
+		log.info("Creating tag: " + tagName);
 		Tag t = new Tag(tagName);
 		tagRepository.save(t);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);

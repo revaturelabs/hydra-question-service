@@ -31,25 +31,56 @@ public class QuestionController {
 	@Autowired
 	private QuestionCompositionService questionCompositionService;
 	
+	/**
+	 * Sets question to active status
+	 * 
+	 * @param questionId Id of question to be activated
+	 * @return No content
+	 */
 	@RequestMapping(value = "/activateQuestion/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> activateQuestion(@PathVariable(value="id") Integer questionId) {
+		log.info("Activating question: " + questionId);
 		questionRepository.toggleQuestionStatusById(true, questionId);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
+	/**
+	 * Sets question to inactive status
+	 * 
+	 * @param questionId Id of question to be deactivated
+	 * @return No content
+	 */
 	@RequestMapping(value = "/deactivateQuestion/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> deactivateQuestion(@PathVariable(value="id") Integer questionId) {
+		log.info("Deactivating question: " + questionId);
 		questionRepository.toggleQuestionStatusById(false, questionId);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
+	/**
+	 * Returns questions associated with bucket of given id
+	 * 
+	 * @param bucketId Id of bucket
+	 * @return List of questions associated with bucket of given id
+	 */
 	@RequestMapping(value = "/bucketQuestions/{bucketId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Question>> getBucketQuestions(@PathVariable(value="bucketId") Integer bucketId) {
+		log.info("Getting questions for bucket: " + bucketId);
 		return new ResponseEntity<>(questionRepository.findByBucketId(bucketId), HttpStatus.FOUND);
 	}
 	
+	/**
+	 * Creates a question based on given information
+	 * 
+	 * @param bucketId Id of bucket
+	 * @param questionText Text of question
+	 * @param answers Sample answers to question
+	 * @param tagIds Ids of tags to be associated with question
+	 * @return No content
+	 */
 	@RequestMapping(value = "/createQuestion", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Void> createQuestion(@RequestParam(value="bucketId") Integer bucketId, @RequestParam(value="text") String questionText, @RequestParam(value="answers") String[] answers, @RequestParam(value="tagIds") Integer[] tagIds) {
+		log.info("Creating message");
 		questionCompositionService.createQuestion(bucketId, questionText, answers, tagIds);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}

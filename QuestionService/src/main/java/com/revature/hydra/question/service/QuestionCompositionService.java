@@ -29,6 +29,14 @@ public class QuestionCompositionService {
 	@Autowired
 	public QuestionTagLookupRepository  questionTagLookupRepository;
 	
+	/**
+	 * Creates a question based on given information
+	 * 
+	 * @param bucketId Id of bucket
+	 * @param questionText Text of question
+	 * @param answers Sample answers to question
+	 * @param tagIds Ids of tags to be associated with question
+	 */
 	public void createQuestion(Integer bucketId, String questionText, String[] answers, Integer[] tagIds) {
 		List<Tag> tags = new ArrayList<>();;
 		for (Integer i : tagIds) {
