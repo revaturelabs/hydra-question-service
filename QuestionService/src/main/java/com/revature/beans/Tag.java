@@ -21,9 +21,8 @@ public class Tag {
 	@Column(name="TAG_NAME")
 	private String tagName;
 
-	public Tag(int tagId, String tagName) {
+	public Tag(String tagName) {
 		super();
-		this.tagId = tagId;
 		this.tagName = tagName;
 	}
 

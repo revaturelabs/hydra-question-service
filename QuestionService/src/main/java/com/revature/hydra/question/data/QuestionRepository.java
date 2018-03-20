@@ -22,4 +22,5 @@ public interface QuestionRepository extends JpaRepository<Question, Integer> {
 	
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	List<Question> findByBucketId(Integer bucketId);
+	
 }
