@@ -18,7 +18,6 @@ import com.revature.hydra.question.data.TagRepository;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/tag")
 public class TagController {
 	
 	private static final Logger log = Logger.getLogger(QuestionController.class);
@@ -31,7 +30,7 @@ public class TagController {
 	 * 
 	 * @return List of all tags
 	 */
-	@RequestMapping(value = "/getTags", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/tag/getTags", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Tag>> getAllTags() {
 		log.info("Getting all tags");
 		return new ResponseEntity<>(tagRepository.findAll(), HttpStatus.OK);
@@ -43,7 +42,7 @@ public class TagController {
 	 * @param tagName Name of tag to be created
 	 * @return No content
 	 */
-	@RequestMapping(value = "/createNewTag", method = RequestMethod.POST)
+	@RequestMapping(value = "/tag/createNewTag", method = RequestMethod.POST)
 	public ResponseEntity<Void> createNewTag(@RequestParam(value="tagName") String tagName) {
 		log.info("Creating tag: " + tagName);
 		Tag t = new Tag(tagName);

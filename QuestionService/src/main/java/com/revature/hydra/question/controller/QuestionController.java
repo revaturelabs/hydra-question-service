@@ -20,7 +20,6 @@ import com.revature.hydra.question.service.QuestionCompositionService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/question")
 public class QuestionController {
 	
 	private static final Logger log = Logger.getLogger(QuestionController.class);
@@ -37,7 +36,7 @@ public class QuestionController {
 	 * @param questionId Id of question to be activated
 	 * @return No content
 	 */
-	@RequestMapping(value = "/activateQuestion/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/question/activateQuestion/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> activateQuestion(@PathVariable(value="id") Integer questionId) {
 		log.info("Activating question: " + questionId);
 		questionRepository.toggleQuestionStatusById(true, questionId);
@@ -50,7 +49,7 @@ public class QuestionController {
 	 * @param questionId Id of question to be deactivated
 	 * @return No content
 	 */
-	@RequestMapping(value = "/deactivateQuestion/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/question/deactivateQuestion/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> deactivateQuestion(@PathVariable(value="id") Integer questionId) {
 		log.info("Deactivating question: " + questionId);
 		questionRepository.toggleQuestionStatusById(false, questionId);
@@ -63,7 +62,7 @@ public class QuestionController {
 	 * @param bucketId Id of bucket
 	 * @return List of questions associated with bucket of given id
 	 */
-	@RequestMapping(value = "/bucketQuestions/{bucketId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/question/bucketQuestions/{bucketId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Question>> getBucketQuestions(@PathVariable(value="bucketId") Integer bucketId) {
 		log.info("Getting questions for bucket: " + bucketId);
 		return new ResponseEntity<>(questionRepository.findByBucketId(bucketId), HttpStatus.FOUND);
@@ -78,7 +77,7 @@ public class QuestionController {
 	 * @param tagIds Ids of tags to be associated with question
 	 * @return No content
 	 */
-	@RequestMapping(value = "/createQuestion", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/question/createQuestion", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Void> createQuestion(@RequestParam(value="bucketId") Integer bucketId, @RequestParam(value="text") String questionText, @RequestParam(value="answers") String[] answers, @RequestParam(value="tagIds") Integer[] tagIds) {
 		log.info("Creating message");
 		questionCompositionService.createQuestion(bucketId, questionText, answers, tagIds);

@@ -126,5 +126,9 @@ public class Question implements Serializable {
 		this.sampleAnswer4 = sampleAnswer4;
 		this.sampleAnswer5 = sampleAnswer5;
 	}
+
+	public Question() {
+		super();
+	}
 	
 }
