@@ -10,10 +10,10 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.revature.beans.Question;
+import com.revature.beans.SimpleQuestion;
 
 @Repository
-public interface QuestionRepository extends JpaRepository<Question, Integer> {
+public interface SimpleQuestionRepository extends JpaRepository<SimpleQuestion, Integer> {
 	
 	/**
 	 * Returns question from given Id
@@ -22,7 +22,7 @@ public interface QuestionRepository extends JpaRepository<Question, Integer> {
 	 * @return Question object
 	 */
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	Question findByQuestionId(Integer questionId);
+	SimpleQuestion findByQuestionId(Integer questionId);
 	
 	/**
 	 * Toggles question status to (in)active based on given information
@@ -31,9 +31,9 @@ public interface QuestionRepository extends JpaRepository<Question, Integer> {
 	 * @param questionId Id of question to be toggled
 	 */
 	@Modifying(clearAutomatically = true)
-	@Query("update Question q set q.isActive = ?1 where q.questionId = ?2")
+	@Query("update SimpleQuestion q set q.isActive = ?1 where q.questionId = ?2")
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	void toggleQuestionStatusById(Boolean isActive, Integer questionId);
+	void toggleSimpleQuestionStatusById(Boolean isActive, Integer questionId);
 	
 	/**
 	 * Returns bucket of given Id
@@ -42,6 +42,6 @@ public interface QuestionRepository extends JpaRepository<Question, Integer> {
 	 * @return Bucket of given Id
 	 */
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	List<Question> findByBucketId(Integer bucketId);
+	List<SimpleQuestion> findByBucketId(Integer bucketId);
 	
 }

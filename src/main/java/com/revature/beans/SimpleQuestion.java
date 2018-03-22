@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity 
 @Table(name="QUESTION")
-public class Question implements Serializable {
+public class SimpleQuestion implements Serializable {
 	
 	private static final long serialVersionUID = -6987859794752419355L;
 
@@ -114,7 +114,7 @@ public class Question implements Serializable {
 		return bucketId;
 	}
 
-	public Question(Integer bucketId, Boolean isActive, String questionText, String sampleAnswer1, String sampleAnswer2,
+	public SimpleQuestion(Integer bucketId, Boolean isActive, String questionText, String sampleAnswer1, String sampleAnswer2,
 			String sampleAnswer3, String sampleAnswer4, String sampleAnswer5) {
 		super();
 		this.bucketId = bucketId;
@@ -127,7 +127,7 @@ public class Question implements Serializable {
 		this.sampleAnswer5 = sampleAnswer5;
 	}
 
-	public Question() {
+	public SimpleQuestion() {
 		super();
 	}
 	

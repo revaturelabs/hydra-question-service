@@ -31,9 +31,9 @@ public class QuestionTagLookup implements Serializable {
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="QUESTION_ID")
-	private Question question;
+	private SimpleQuestion question;
 
-	public QuestionTagLookup(Tag tag, Question question) {
+	public QuestionTagLookup(Tag tag, SimpleQuestion question) {
 		super();
 		this.tag = tag;
 		this.question = question;
@@ -55,11 +55,11 @@ public class QuestionTagLookup implements Serializable {
 		this.tag = tag;
 	}
 
-	public Question getQuestion() {
+	public SimpleQuestion getQuestion() {
 		return question;
 	}
 
-	public void setQuestion(Question question) {
+	public void setQuestion(SimpleQuestion question) {
 		this.question = question;
 	}
 	

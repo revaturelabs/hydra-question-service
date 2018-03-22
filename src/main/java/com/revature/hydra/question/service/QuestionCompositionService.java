@@ -7,10 +7,10 @@ import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.revature.beans.Question;
+import com.revature.beans.SimpleQuestion;
 import com.revature.beans.QuestionTagLookup;
 import com.revature.beans.Tag;
-import com.revature.hydra.question.data.QuestionRepository;
+import com.revature.hydra.question.data.SimpleQuestionRepository;
 import com.revature.hydra.question.data.QuestionTagLookupRepository;
 import com.revature.hydra.question.data.TagRepository;
 
@@ -21,7 +21,7 @@ public class QuestionCompositionService {
 	AmqpTemplate rabbitTemplate;
 
 	@Autowired
-	public QuestionRepository questionRepository;
+	public SimpleQuestionRepository questionRepository;
 	
 	@Autowired
 	public TagRepository tagRepository;
@@ -42,7 +42,7 @@ public class QuestionCompositionService {
 		for (Integer i : tagIds) {
 			tags.add(tagRepository.findByTagId(i));
 		}
-		Question q = new Question(bucketId, true, questionText, answers[0], answers[1],
+		SimpleQuestion q = new SimpleQuestion(bucketId, true, questionText, answers[0], answers[1],
 				answers[2], answers[3], answers[4]);
 		q = questionRepository.save(q);
 		for (Tag t : tags) {

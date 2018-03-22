@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.beans.Question;
-import com.revature.hydra.question.data.QuestionRepository;
+import com.revature.beans.SimpleQuestion;
+import com.revature.hydra.question.data.SimpleQuestionRepository;
 import com.revature.hydra.question.service.QuestionCompositionService;
 
 @RestController
@@ -25,7 +25,7 @@ public class QuestionController {
 	private static final Logger log = Logger.getLogger(QuestionController.class);
 	
 	@Autowired
-	private QuestionRepository questionRepository;
+	private SimpleQuestionRepository questionRepository;
 	
 	@Autowired
 	private QuestionCompositionService questionCompositionService;
@@ -39,7 +39,7 @@ public class QuestionController {
 	@RequestMapping(value = "/question/activateQuestion/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> activateQuestion(@PathVariable(value="id") Integer questionId) {
 		log.info("Activating question: " + questionId);
-		questionRepository.toggleQuestionStatusById(true, questionId);
+		questionRepository.toggleSimpleQuestionStatusById(true, questionId);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
@@ -52,7 +52,7 @@ public class QuestionController {
 	@RequestMapping(value = "/question/deactivateQuestion/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> deactivateQuestion(@PathVariable(value="id") Integer questionId) {
 		log.info("Deactivating question: " + questionId);
-		questionRepository.toggleQuestionStatusById(false, questionId);
+		questionRepository.toggleSimpleQuestionStatusById(false, questionId);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
@@ -63,7 +63,7 @@ public class QuestionController {
 	 * @return List of questions associated with bucket of given id
 	 */
 	@RequestMapping(value = "/question/bucketQuestions/{bucketId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Question>> getBucketQuestions(@PathVariable(value="bucketId") Integer bucketId) {
+	public ResponseEntity<List<SimpleQuestion>> getBucketQuestions(@PathVariable(value="bucketId") Integer bucketId) {
 		log.info("Getting questions for bucket: " + bucketId);
 		return new ResponseEntity<>(questionRepository.findByBucketId(bucketId), HttpStatus.FOUND);
 	}

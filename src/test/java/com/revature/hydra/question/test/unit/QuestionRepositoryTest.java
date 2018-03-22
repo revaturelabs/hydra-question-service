@@ -10,8 +10,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.revature.beans.Question;
-import com.revature.hydra.question.data.QuestionRepository;
+import com.revature.beans.SimpleQuestion;
+import com.revature.hydra.question.data.SimpleQuestionRepository;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -19,13 +19,13 @@ import com.revature.hydra.question.data.QuestionRepository;
 public class QuestionRepositoryTest {
 	
 	@Autowired
-	private QuestionRepository questionRepository;
+	private SimpleQuestionRepository questionRepository;
 	
-	private Question q;
+	private SimpleQuestion q;
 	
 	@Before
 	public final void init() {
-		q = new Question(1, true, "Test question?", "Test answer 1", "Test answer 2",
+		q = new SimpleQuestion(1, true, "Test question?", "Test answer 1", "Test answer 2",
 				"Test answer 3", "Test answer 4", "Test answer 5");
 		q = questionRepository.save(q);
 	}
@@ -37,7 +37,7 @@ public class QuestionRepositoryTest {
 	
 	@Test
 	public final void testFindByBucketId() {
-		Question p = questionRepository.findByBucketId(1).get(0);
+		SimpleQuestion p = questionRepository.findByBucketId(1).get(0);
 		Assert.assertEquals(p.getQuestionId(), q.getQuestionId());
 	}
 	
@@ -46,10 +46,10 @@ public class QuestionRepositoryTest {
 		int id = q.getQuestionId();
 		q = questionRepository.findByQuestionId(id);
 		Assert.assertTrue(q.getIsActive());
-		questionRepository.toggleQuestionStatusById(false, id);
+		questionRepository.toggleSimpleQuestionStatusById(false, id);
 		q = questionRepository.findByQuestionId(id);
 		Assert.assertFalse(q.getIsActive());
-		questionRepository.toggleQuestionStatusById(true, id);
+		questionRepository.toggleSimpleQuestionStatusById(true, id);
 		q = questionRepository.findByQuestionId(id);
 		Assert.assertTrue(q.getIsActive());
 	}
