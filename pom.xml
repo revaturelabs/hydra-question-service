@@ -51,10 +51,11 @@
 <!-- 			<groupId>org.springframework.cloud</groupId> -->
 <!-- 			<artifactId>spring-cloud-starter-eureka</artifactId> -->
 <!-- 		</dependency> -->
-		<dependency>
-			<groupId>io.pivotal.spring.cloud</groupId>
-			<artifactId>spring-cloud-services-starter-service-registry</artifactId>
-		</dependency>
+		
+<!-- 		<dependency> -->
+<!-- 			<groupId>io.pivotal.spring.cloud</groupId> -->
+<!-- 			<artifactId>spring-cloud-services-starter-service-registry</artifactId> -->
+<!-- 		</dependency> -->
 
 		<dependency>
     		<groupId>org.springframework.cloud</groupId>
@@ -73,17 +74,17 @@
 			<scope>test</scope>
 		</dependency>
 		
-	 	<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc6</artifactId>
-			<version>11.2.0</version>
-		</dependency>
-		
-<!-- 		<dependency> -->
-<!-- 			<groupId>com.oracle.ojdbc</groupId> -->
-<!-- 			<artifactId>ojdbc</artifactId> -->
-<!-- 			<version>12.1.0.1</version> -->
+<!-- 	 	<dependency> -->
+<!-- 			<groupId>com.oracle</groupId> -->
+<!-- 			<artifactId>ojdbc6</artifactId> -->
+<!-- 			<version>11.2.0</version> -->
 <!-- 		</dependency> -->
+		
+		<dependency>
+			<groupId>com.oracle.ojdbc</groupId>
+			<artifactId>ojdbc</artifactId>
+			<version>12.1.0.1</version>
+		</dependency>
 		
 		<dependency>
 			<groupId>log4j</groupId>
