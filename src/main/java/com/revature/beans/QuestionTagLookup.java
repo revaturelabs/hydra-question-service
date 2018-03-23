@@ -33,6 +33,10 @@ public class QuestionTagLookup implements Serializable {
 	@JoinColumn(name="QUESTION_ID")
 	private SimpleQuestion question;
 
+	public QuestionTagLookup() {
+		super();
+	}
+
 	public QuestionTagLookup(Tag tag, SimpleQuestion question) {
 		super();
 		this.tag = tag;
