@@ -1,5 +1,6 @@
 package com.revature.hydra.question;
 
+import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,9 +18,11 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 //@EnableSwagger2
 @SpringBootApplication
-
+@EnableEurekaClient
+@EnableDiscoveryClient
 @EntityScan(value = "com.revature.beans")
 @EnableAutoConfiguration
+@EnableRabbit
 public class QuestionRepositoryServiceApplication {
 	
 	public static void main(String[] args) {
