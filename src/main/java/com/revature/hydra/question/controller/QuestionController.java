@@ -87,9 +87,9 @@ public class QuestionController {
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
-/*	@RequestMapping(value = "/question/filtered", method = RequestMethod.POST)
+	@RequestMapping(value = "/question/filtered", method = RequestMethod.POST)
 	public ResponseEntity<List<SimpleQuestion>> filterQuestions(@RequestBody Filter filter) {
-		log.info("Filtering questions by skillType: " + filter.skillTypeID + " and tags: " + filter.tagList);
+		log.info("Filtering questions by skillType: " + filter.skillTypeId + " and tags: " + filter.tagList);
 		return new ResponseEntity<>(questionCompositionService.filterQuestion(filter), HttpStatus.OK);
-	}*/
+	}
 }

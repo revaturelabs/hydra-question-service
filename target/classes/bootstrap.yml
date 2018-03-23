@@ -1,3 +1,6 @@
+security:
+  basic:
+     enabled: false
 spring:
   application:
     name: hydra-question-service
