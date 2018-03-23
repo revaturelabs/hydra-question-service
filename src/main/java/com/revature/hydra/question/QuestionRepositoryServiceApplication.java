@@ -19,6 +19,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableEurekaClient
 @EnableDiscoveryClient
 @EntityScan(value = "com.revature.beans")
+@EnableAutoConfiguration(exclude=RabbitAutoConfiguration.class)
 public class QuestionRepositoryServiceApplication {
 	
 	public static void main(String[] args) {
