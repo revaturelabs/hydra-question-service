@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,7 @@ import com.revature.hydra.question.data.TagRepository;
 public class QuestionCompositionService {
 	
 	@Autowired
-	AmqpTemplate rabbitTemplate;
+	RabbitTemplate rabbitTemplate;
 
 	@Autowired
 	public SimpleQuestionRepository questionRepository;
