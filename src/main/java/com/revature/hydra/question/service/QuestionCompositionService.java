@@ -14,6 +14,8 @@ import com.revature.beans.Tag;
 import com.revature.hydra.question.data.SimpleQuestionRepository;
 import com.revature.hydra.question.data.QuestionTagLookupRepository;
 import com.revature.hydra.question.data.TagRepository;
+import com.revature.wrappers.Filter;
+import com.revature.wrappers.QuestionCreate;
 
 @Service
 public class QuestionCompositionService {
@@ -38,13 +40,13 @@ public class QuestionCompositionService {
 	 * @param answers Sample answers to question
 	 * @param tagIds Ids of tags to be associated with question
 	 */
-	public void createQuestion(Integer bucketId, String questionText, String[] answers, Integer[] tagIds) {
+	public void createQuestion(QuestionCreate creator) {
 		List<Tag> tags = new ArrayList<>();;
-		for (Integer i : tagIds) {
+		for (Integer i : creator.tagIds) {
 			tags.add(tagRepository.findByTagId(i));
 		}
-		SimpleQuestion q = new SimpleQuestion(bucketId, true, questionText, answers[0], answers[1],
-				answers[2], answers[3], answers[4]);
+		SimpleQuestion q = new SimpleQuestion(creator.bucketId, true, creator.text, creator.answers[0], creator.answers[1],
+				creator.answers[2], creator.answers[3], creator.answers[4]);
 		q = questionRepository.save(q);
 		for (Tag t : tags) {
 			QuestionTagLookup qtl = new QuestionTagLookup(t, q);
@@ -52,4 +54,7 @@ public class QuestionCompositionService {
 		}
 	}
 	
+/*	public List<SimpleQuestion> filterQuestion(Filter filter) {
+		
+	}*/
 }

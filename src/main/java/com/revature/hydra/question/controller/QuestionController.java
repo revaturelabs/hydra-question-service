@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.beans.SimpleQuestion;
 import com.revature.hydra.question.data.SimpleQuestionRepository;
 import com.revature.hydra.question.service.QuestionCompositionService;
+import com.revature.wrappers.Filter;
+import com.revature.wrappers.QuestionCreate;
 
 @RestController
 @CrossOrigin
@@ -78,10 +81,15 @@ public class QuestionController {
 	 * @return No content
 	 */
 	@RequestMapping(value = "/question/createQuestion", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Void> createQuestion(@RequestParam(value="bucketId") Integer bucketId, @RequestParam(value="text") String questionText, @RequestParam(value="answers") String[] answers, @RequestParam(value="tagIds") Integer[] tagIds) {
+	public ResponseEntity<Void> createQuestion(@RequestBody QuestionCreate creator) {
 		log.info("Creating message");
-		questionCompositionService.createQuestion(bucketId, questionText, answers, tagIds);
+		questionCompositionService.createQuestion(creator);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
+/*	@RequestMapping(value = "/question/filtered", method = RequestMethod.POST)
+	public ResponseEntity<List<SimpleQuestion>> filterQuestions(@RequestBody Filter filter) {
+		log.info("Filtering questions by skillType: " + filter.skillTypeID + " and tags: " + filter.tagList);
+		return new ResponseEntity<>(questionCompositionService.filterQuestion(filter), HttpStatus.OK);
+	}*/
 }
