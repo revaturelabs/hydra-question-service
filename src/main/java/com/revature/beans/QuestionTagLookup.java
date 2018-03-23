@@ -43,7 +43,7 @@ public class QuestionTagLookup implements Serializable {
 		this.question = question;
 	}
 
-	public int getQuestionTagLookupId() {
+	public Integer getQuestionTagLookupId() {
 		return questionTagLookupId;
 	}
 
