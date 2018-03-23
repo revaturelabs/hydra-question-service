@@ -40,7 +40,7 @@ public class QuestionCompositionService {
 	 * @param tagIds Ids of tags to be associated with question
 	 */
 	public void createQuestion(QuestionCreate creator) {
-		List<Tag> tags = new ArrayList<>();;
+		List<Tag> tags = new ArrayList<>();
 		for (Integer i : creator.tagIds) {
 			tags.add(tagRepository.findByTagId(i));
 		}
