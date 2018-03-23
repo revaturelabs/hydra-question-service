@@ -55,7 +55,7 @@
 		<dependency>
 			<groupId>io.pivotal.spring.cloud</groupId>
 			<artifactId>spring-cloud-services-starter-service-registry</artifactId>
-			<scope>compile,runtime</scope>
+			<scope>compile</scope>
 		</dependency>
 
 		<dependency>
