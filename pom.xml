@@ -13,6 +13,8 @@
 		<version>1.5.9.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+	
+	
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -45,9 +47,13 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-config</artifactId>
 		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.springframework.cloud</groupId> -->
+<!-- 			<artifactId>spring-cloud-starter-eureka</artifactId> -->
+<!-- 		</dependency> -->
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-eureka</artifactId>
+			<groupId>io.pivotal.spring.cloud</groupId>
+			<artifactId>spring-cloud-services-starter-service-registry</artifactId>
 		</dependency>
 
 		<dependency>
@@ -67,11 +73,17 @@
 			<scope>test</scope>
 		</dependency>
 		
-		<dependency>
+	 	<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc6</artifactId>
 			<version>11.2.0</version>
 		</dependency>
+		
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.oracle.ojdbc</groupId> -->
+<!-- 			<artifactId>ojdbc</artifactId> -->
+<!-- 			<version>12.1.0.1</version> -->
+<!-- 		</dependency> -->
 		
 		<dependency>
 			<groupId>log4j</groupId>
@@ -111,6 +123,13 @@
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
 				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>io.pivotal.spring.cloud</groupId>
+				<artifactId>spring-cloud-services-dependencies</artifactId>
+				<version>1.3.1.RELEASE</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
