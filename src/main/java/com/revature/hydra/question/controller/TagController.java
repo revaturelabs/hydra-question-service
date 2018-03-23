@@ -30,7 +30,7 @@ public class TagController {
 	 * 
 	 * @return List of all tags
 	 */
-	@RequestMapping(value = "/tag/getTags", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/tag/getAllTags", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Tag>> getAllTags() {
 		log.info("Getting all tags");
 		return new ResponseEntity<>(tagRepository.findAll(), HttpStatus.OK);
