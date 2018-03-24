@@ -3,16 +3,16 @@ package com.revature.hydra.question.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.revature.beans.SimpleQuestion;
 import com.revature.beans.QuestionTagLookup;
+import com.revature.beans.SimpleQuestion;
 import com.revature.beans.Tag;
-import com.revature.hydra.question.data.SimpleQuestionRepository;
 import com.revature.hydra.question.data.QuestionTagLookupRepository;
+import com.revature.hydra.question.data.SimpleQuestionRepository;
 import com.revature.hydra.question.data.TagRepository;
 import com.revature.wrappers.Filter;
 import com.revature.wrappers.QuestionCreate;
@@ -20,8 +20,8 @@ import com.revature.wrappers.QuestionCreate;
 @Service
 public class QuestionCompositionService {
 
-	@Autowired
-	RabbitTemplate rabbitTemplate;
+	//@Autowired
+	//RabbitTemplate rabbitTemplate;
 
 	@Autowired
 	public SimpleQuestionRepository questionRepository;
