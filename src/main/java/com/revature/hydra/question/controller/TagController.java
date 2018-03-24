@@ -8,9 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.beans.Tag;
@@ -43,9 +43,9 @@ public class TagController {
 	 * @return No content
 	 */
 	@RequestMapping(value = "/tag/createNewTag", method = RequestMethod.POST)
-	public ResponseEntity<Void> createNewTag(@RequestParam(value="tagName") String tagName) {
-		log.info("Creating tag: " + tagName);
-		Tag t = new Tag(tagName);
+	public ResponseEntity<Void> createNewTag(@RequestBody Tag tag) {
+		log.info("Creating tag: " + tag.getTagName());
+		Tag t = new Tag(tag.getTagName());
 		tagRepository.save(t);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
