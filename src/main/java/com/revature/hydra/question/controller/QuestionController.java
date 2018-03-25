@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.beans.SimpleQuestion;
@@ -88,7 +87,7 @@ public class QuestionController {
 	}
 	
 	@RequestMapping(value = "/question/filtered", method = RequestMethod.POST)
-	public ResponseEntity<List<SimpleQuestion>> filterQuestions(@RequestBody Filter filter) {
+	public ResponseEntity<List<Integer/*SimpleQuestion*/>> filterQuestions(@RequestBody Filter filter) {
 		log.info("Filtering questions by skillType: " + filter.skillTypeId + " and tags: " + filter.tagList);
 		return new ResponseEntity<>(questionCompositionService.filterQuestion(filter), HttpStatus.OK);
 	}

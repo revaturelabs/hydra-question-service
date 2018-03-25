@@ -3,9 +3,7 @@ package com.revature.hydra.question.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.revature.beans.QuestionTagLookup;
@@ -20,9 +18,6 @@ import com.revature.wrappers.QuestionCreate;
 @Service
 public class QuestionCompositionService {
 
-	//@Autowired
-	//RabbitTemplate rabbitTemplate;
-
 	@Autowired
 	public SimpleQuestionRepository questionRepository;
 
@@ -31,6 +26,9 @@ public class QuestionCompositionService {
 
 	@Autowired
 	public QuestionTagLookupRepository questionTagLookupRepository;
+	
+	@Autowired
+	public QuestionCompositionMessagingService questionCompositionMessagingService;
 
 	/**
 	 * Creates a question based on given information
@@ -58,7 +56,7 @@ public class QuestionCompositionService {
 		}
 	}
 
-	public List<SimpleQuestion> filterQuestion(Filter filter) {
-		return null;
+	public List<Integer>/*List<SimpleQuestion>*/ filterQuestion(Filter filter) {
+		return questionCompositionMessagingService.sendBucketIdsRequest(filter.skillTypeId);
 	}
 }
