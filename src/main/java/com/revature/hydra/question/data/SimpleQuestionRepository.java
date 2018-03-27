@@ -44,4 +44,7 @@ public interface SimpleQuestionRepository extends JpaRepository<SimpleQuestion, 
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	List<SimpleQuestion> findByBucketId(Integer bucketId);
 	
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	@Query("SELECT * FROM QUESTION q WHERE QUESTION_ID IN q.QUESTION_ID IN (?1) AND q.BUCKET_ID IN (?2)")
+	List<SimpleQuestion> getSpecificQuestionsByBucketId(List<Integer> questionIds, List<Integer> bucketIds);
 }

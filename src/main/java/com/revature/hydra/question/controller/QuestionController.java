@@ -85,7 +85,12 @@ public class QuestionController {
 		questionCompositionService.createQuestion(creator);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
-	
+	 /**
+	  * Returns questions belonging to a specific skillType and containing specific tags
+	  * 
+	  * @param filter object containing skillTypeId and tagList
+	  * @return List of SimpleQuestion objects
+	  */
 	@RequestMapping(value = "/question/filtered", method = RequestMethod.POST)
 	public ResponseEntity<List<Integer/*SimpleQuestion*/>> filterQuestions(@RequestBody Filter filter) {
 		log.info("Filtering questions by skillType: " + filter.skillTypeId + " and tags: " + filter.tagList);

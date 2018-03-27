@@ -56,7 +56,17 @@ public class QuestionCompositionService {
 		}
 	}
 
-	public List<Integer>/*List<SimpleQuestion>*/ filterQuestion(Filter filter) {
-		return questionCompositionMessagingService.sendBucketIdsRequest(filter.skillTypeId);
+	/**
+	 * Filters questions based on inputed list of tagIds and skillTypeId
+	 * 
+	 * @param filter
+	 * 		Filter object which contains tagList and skillTypeId
+	 * @return
+	 * 		List of SimpleQuestion objects
+	 */
+	public List<SimpleQuestion> filterQuestion(Filter filter) {
+		List<Integer> bucketIds = questionCompositionMessagingService.sendBucketIdsRequest(filter.skillTypeId);
+		List<Integer> questionIds = questionTagLookupRepository.getQuestionIdByTagId(filter.tagList);
+		return questionRepository.getSpecificQuestionsByBucketId(questionIds, bucketIds);
 	}
 }

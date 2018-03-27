@@ -21,7 +21,7 @@ public class QuestionCompositionMessagingService {
 		JsonObject bucketIdsRequest = new JsonObject();
 		
 		bucketIdsRequest.addProperty("methodName", "findBucketIdsBySkillType");
-		bucketIdsRequest.addProperty("traineeId", SkillTypeId);
+		bucketIdsRequest.addProperty("skillTypeId", SkillTypeId);
 		
 		List<Integer> list =  (List<Integer>)rabbitTemplate.convertSendAndReceive(RABBIT_REPO_EXCHANGE,
 				SKILLTYPE_ROUTING_KEY, bucketIdsRequest.toString());
