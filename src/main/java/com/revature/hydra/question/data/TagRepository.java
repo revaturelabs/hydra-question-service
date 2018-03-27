@@ -1,5 +1,7 @@
 package com.revature.hydra.question.data;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Isolation;
@@ -20,4 +22,6 @@ public interface TagRepository extends JpaRepository<Tag, Integer> {
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	Tag findByTagId(Integer tagId);
 	
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	List<Tag> findByTagIdIn(List<Integer> tagIds);
 }

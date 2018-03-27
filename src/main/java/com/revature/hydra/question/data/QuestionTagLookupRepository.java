@@ -10,11 +10,16 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.beans.QuestionTagLookup;
+import com.revature.beans.Tag;
 
 @Repository
 public interface QuestionTagLookupRepository extends JpaRepository<QuestionTagLookup, Integer> {
 	
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	@Query("select QUESTION_ID from QUESTION_TAG_LOOKUP q WHERE q.TAG_ID IN (?1)")
-	List<Integer> getQuestionIdByTagId (List<Integer> tagIds);
+	@Query("SELECT q.question.questionId FROM QuestionTagLookup q WHERE q.tag IN (?1)")
+	List<Integer> getQuestionIdByTagId (List<Tag> tags);
+	
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	@Query("SELECT q.tag FROM QuestionTagLookup q WHERE q.question.questionId = (?1)")
+	List<Tag> getTagByQuestionId (Integer questionId);
 }

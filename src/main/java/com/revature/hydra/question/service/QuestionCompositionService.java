@@ -66,7 +66,8 @@ public class QuestionCompositionService {
 	 */
 	public List<SimpleQuestion> filterQuestion(Filter filter) {
 		List<Integer> bucketIds = questionCompositionMessagingService.sendBucketIdsRequest(filter.skillTypeId);
-		List<Integer> questionIds = questionTagLookupRepository.getQuestionIdByTagId(filter.tagList);
+		List<Tag> tags = tagRepository.findByTagIdIn(filter.tagList);
+		List<Integer> questionIds = questionTagLookupRepository.getQuestionIdByTagId(tags);
 		return questionRepository.getSpecificQuestionsByBucketId(questionIds, bucketIds);
 	}
 }

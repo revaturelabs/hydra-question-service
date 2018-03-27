@@ -87,6 +87,7 @@ public class QuestionController {
 		questionCompositionService.createQuestion(creator);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
+	
 	 /**
 	  * Returns questions belonging to a specific skillType and containing specific tags
 	  * 
@@ -94,8 +95,22 @@ public class QuestionController {
 	  * @return List of SimpleQuestion objects
 	  */
 	@RequestMapping(value = "/question/filtered", method = RequestMethod.POST)
-	public ResponseEntity<List<Integer/*SimpleQuestion*/>> filterQuestions(@RequestBody Filter filter) {
+	public ResponseEntity<List<SimpleQuestion>> filterQuestions(@RequestBody Filter filter) {
 		log.info("Filtering questions by skillType: " + filter.skillTypeId + " and tags: " + filter.tagList);
 		return new ResponseEntity<>(questionCompositionService.filterQuestion(filter), HttpStatus.OK);
+	}
+	
+	/**
+	 * Updates Question with given Id with the passed values of object
+	 * 
+	 * @param q
+	 * 		SimpleQuestion object to be updated based on questionId
+	 */
+	@RequestMapping(value = "/question/updateQuestion", method = RequestMethod.POST)
+	public ResponseEntity<Void> updateQuestion(@RequestBody SimpleQuestion q) {
+		log.info("Updating question: " + q.getQuestionId());
+		questionRepository.updateQuestion(q.getBucketId(), q.getQuestionText(), q.getSampleAnswer1(), q.getSampleAnswer2(),
+				q.getSampleAnswer3(), q.getSampleAnswer4(), q.getSampleAnswer5(), q.getQuestionId());
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 }

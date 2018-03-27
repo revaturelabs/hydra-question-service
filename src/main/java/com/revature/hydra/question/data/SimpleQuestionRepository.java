@@ -18,8 +18,9 @@ public interface SimpleQuestionRepository extends JpaRepository<SimpleQuestion, 
 	/**
 	 * Returns question from given Id
 	 * 
-	 * @param questionId Id of question
-	 * @return Question object
+	 * @param questionId 
+	 * 		Id of question
+	 * @return SimpleQuestion 
 	 */
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	SimpleQuestion findByQuestionId(Integer questionId);
@@ -27,8 +28,10 @@ public interface SimpleQuestionRepository extends JpaRepository<SimpleQuestion, 
 	/**
 	 * Toggles question status to (in)active based on given information
 	 * 
-	 * @param isActive Sets question to active if true, inactive otherwise
-	 * @param questionId Id of question to be toggled
+	 * @param isActive 
+	 * 		Sets question to active if true, inactive otherwise
+	 * @param questionId 
+	 * 		Id of question to be toggled
 	 */
 	@Modifying(clearAutomatically = true)
 	@Query("update SimpleQuestion q set q.isActive = ?1 where q.questionId = ?2")
@@ -44,7 +47,34 @@ public interface SimpleQuestionRepository extends JpaRepository<SimpleQuestion, 
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	List<SimpleQuestion> findByBucketId(Integer bucketId);
 	
+	/**
+	 * Gets those questions with the specified questionIds belonging to the specified buckets
+	 * 
+	 * @param questionIds
+	 * 		list of valid questionIds, preferably containing one of several tags
+	 * @param bucketIds
+	 * 		list of valid bucketIds, preferably within the same skillType
+	 * @return List<SimpleQuestion>
+	 */
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	@Query("SELECT * FROM QUESTION q WHERE QUESTION_ID IN q.QUESTION_ID IN (?1) AND q.BUCKET_ID IN (?2)")
+	@Query("SELECT q FROM SimpleQuestion q WHERE q.questionId IN (?1) AND q.bucketId IN (?2)")
 	List<SimpleQuestion> getSpecificQuestionsByBucketId(List<Integer> questionIds, List<Integer> bucketIds);
+	
+	/**
+	 * Updates the Question of specified questionId with the bucketId, question and answers specified
+	 * 
+	 * @param bucketId
+	 * @param questionText
+	 * @param answer1
+	 * @param answer2
+	 * @param answer3
+	 * @param answer4
+	 * @param answer5
+	 * @param questionId
+	 */
+	@Modifying(clearAutomatically = true)
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	@Query("UPDATE SimpleQuestion q SET q.bucketId = ?1, q.questionText = ?2, q.sampleAnswer1 = ?3, q.sampleAnswer2 = ?4, " + 
+			"q.sampleAnswer3 = ?5, q.sampleAnswer4 = ?6, q.sampleAnswer5 = ?7 WHERE q.questionId = ?8")
+	void updateQuestion (Integer bucketId, String questionText, String answer1, String answer2, String answer3, String answer4, String answer5, Integer questionId);
 }

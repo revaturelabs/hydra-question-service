@@ -8,12 +8,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.beans.Tag;
+import com.revature.hydra.question.data.QuestionTagLookupRepository;
 import com.revature.hydra.question.data.TagRepository;
 
 @RestController
@@ -24,6 +26,9 @@ public class TagController {
 	
 	@Autowired
 	private TagRepository tagRepository;
+	
+	@Autowired
+	private QuestionTagLookupRepository questionTagLookupRepository;
 	
 	/**
 	 * Returns all tags
@@ -50,4 +55,8 @@ public class TagController {
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
+	@RequestMapping(value = "/tag/getTagByQuestionId/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Tag>> getTagsByQuestionId(@PathVariable(value="id") Integer questionId) {
+		return new ResponseEntity<>(questionTagLookupRepository.getTagByQuestionId(questionId), HttpStatus.OK);
+	}
 }
