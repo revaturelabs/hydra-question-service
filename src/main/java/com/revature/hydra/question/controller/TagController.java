@@ -55,6 +55,12 @@ public class TagController {
 		return new ResponseEntity<>(tagRepository.findByTagName(tag.getTagName()), HttpStatus.NO_CONTENT);
 	}
 	
+	/**
+	 * Returns the list of tags associated with the given question id
+	 * 
+	 * @param questionId Id of question
+	 * @return List of tags associated with given id
+	 */
 	@RequestMapping(value = "/tag/getTagByQuestionId/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Tag>> getTagsByQuestionId(@PathVariable(value="id") Integer questionId) {
 		return new ResponseEntity<>(questionTagLookupRepository.getTagByQuestionId(questionId), HttpStatus.OK);

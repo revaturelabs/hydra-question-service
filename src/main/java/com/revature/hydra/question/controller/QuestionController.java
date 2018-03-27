@@ -103,8 +103,8 @@ public class QuestionController {
 	/**
 	 * Updates Question with given Id with the passed values of object
 	 * 
-	 * @param q
-	 * 		SimpleQuestion object to be updated based on questionId
+	 * @param q SimpleQuestion object to be updated based on questionId
+	 * @return No content
 	 */
 	@RequestMapping(value = "/question/updateQuestion", method = RequestMethod.POST)
 	public ResponseEntity<Void> updateQuestion(@RequestBody SimpleQuestion q) {

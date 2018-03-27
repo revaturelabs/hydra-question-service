@@ -17,6 +17,12 @@ public class QuestionCompositionMessagingService {
 	private static String SKILLTYPE_ROUTING_KEY = "ugxlIFj1zg93JkKd";
 	private static String RABBIT_REPO_EXCHANGE = "revature.hydra.repos";
 	
+	/**
+	 * Sends skill type id and returns list of bucket ids
+	 * 
+	 * @param SkillTypeId Skilltype id
+	 * @return List of associated bucket ids
+	 */
 	public List<Integer> sendBucketIdsRequest(Integer SkillTypeId) {
 		JsonObject bucketIdsRequest = new JsonObject();
 		
