@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,7 @@ import com.revature.wrappers.QuestionCreate;
 
 @RestController
 @CrossOrigin
+@ComponentScan("com.revature.hydra.question.*")
 public class QuestionController {
 	
 	private static final Logger log = Logger.getLogger(QuestionController.class);
