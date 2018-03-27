@@ -45,14 +45,14 @@ public class TagController {
 	 * Creates tag by given name
 	 * 
 	 * @param tagName Name of tag to be created
-	 * @return No content
+	 * @return Tag tag that was created
 	 */
 	@RequestMapping(value = "/tag/createNewTag", method = RequestMethod.POST)
-	public ResponseEntity<Void> createNewTag(@RequestBody Tag tag) {
+	public ResponseEntity<Tag> createNewTag(@RequestBody Tag tag) {
 		log.info("Creating tag: " + tag.getTagName());
 		Tag t = new Tag(tag.getTagName());
 		tagRepository.save(t);
-		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(tagRepository.findByTagName(tag.getTagName()), HttpStatus.NO_CONTENT);
 	}
 	
 	@RequestMapping(value = "/tag/getTagByQuestionId/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

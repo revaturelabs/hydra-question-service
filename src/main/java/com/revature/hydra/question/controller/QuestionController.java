@@ -69,7 +69,7 @@ public class QuestionController {
 	@RequestMapping(value = "/question/bucketQuestions/{bucketId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<SimpleQuestion>> getBucketQuestions(@PathVariable(value="bucketId") Integer bucketId) {
 		log.info("Getting questions for bucket: " + bucketId);
-		return new ResponseEntity<>(questionRepository.findByBucketId(bucketId), HttpStatus.FOUND);
+		return new ResponseEntity<>(questionRepository.findByBucketId(bucketId), HttpStatus.OK);
 	}
 	
 	/**
