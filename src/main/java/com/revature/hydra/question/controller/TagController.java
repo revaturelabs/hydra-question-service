@@ -51,8 +51,7 @@ public class TagController {
 	public ResponseEntity<Tag> createNewTag(@RequestBody Tag tag) {
 		log.info("Creating tag: " + tag.getTagName());
 		Tag t = new Tag(tag.getTagName());
-		tagRepository.save(t);
-		return new ResponseEntity<>(tagRepository.findByTagName(tag.getTagName()).get(0), HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(tagRepository.save(t), HttpStatus.OK);
 	}
 	
 	/**

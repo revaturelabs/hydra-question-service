@@ -40,16 +40,16 @@ insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_A
 insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER_1, SAMPLE_ANSWER_2, SAMPLE_ANSWER_3, SAMPLE_ANSWER_4, SAMPLE_ANSWER_5) values (QUESTION_SEQUENCE.NEXTVAL, 4, 1, 'Nunc nisl.', 'Maecenas pulvinar lobortis est.', 'Vivamus vel nulla eget eros elementum pellentesque.', 'Donec posuere metus vitae ipsum.', 'Pellentesque eget nunc.', 'Vivamus vestibulum sagittis sapien.'); 
 insert into QUESTION (QUESTION_ID, BUCKET_ID, IS_ACTIVE, QUESTION_TEXT, SAMPLE_ANSWER_1, SAMPLE_ANSWER_2, SAMPLE_ANSWER_3, SAMPLE_ANSWER_4, SAMPLE_ANSWER_5) values (QUESTION_SEQUENCE.NEXTVAL, 1, 0, 'Etiam vel augue.', 'Nulla mollis molestie lorem.', 'Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.', 'In sagittis dui vel nisl.', 'Nam tristique tortor eu pede.', 'Etiam faucibus cursus urna.'); 
 
-insert into TAG (TAG_ID, TAG_NAME) values (TAG_SEQUENCE.NEXTVAL, 'Stim');
-insert into TAG (TAG_ID, TAG_NAME) values (TAG_SEQUENCE.NEXTVAL, 'Home Ing');
-insert into TAG (TAG_ID, TAG_NAME) values (TAG_SEQUENCE.NEXTVAL, 'Zathin');
-insert into TAG (TAG_ID, TAG_NAME) values (TAG_SEQUENCE.NEXTVAL, 'Duobam');
-insert into TAG (TAG_ID, TAG_NAME) values (TAG_SEQUENCE.NEXTVAL, 'Trippledex');
-insert into TAG (TAG_ID, TAG_NAME) values (TAG_SEQUENCE.NEXTVAL, 'Y-Solowarm');
-insert into TAG (TAG_ID, TAG_NAME) values (TAG_SEQUENCE.NEXTVAL, 'Sonair');
-insert into TAG (TAG_ID, TAG_NAME) values (TAG_SEQUENCE.NEXTVAL, 'Flowdesk');
-insert into TAG (TAG_ID, TAG_NAME) values (TAG_SEQUENCE.NEXTVAL, 'Hatity');
-insert into TAG (TAG_ID, TAG_NAME) values (TAG_SEQUENCE.NEXTVAL, 'Vagram');
+insert into TAG (TAG_ID, TAG_NAME) values (TAG_SEQUENCE.NEXTVAL, 'Inheritance');
+insert into TAG (TAG_ID, TAG_NAME) values (TAG_SEQUENCE.NEXTVAL, 'Abstraction');
+insert into TAG (TAG_ID, TAG_NAME) values (TAG_SEQUENCE.NEXTVAL, 'Encapsulation');
+insert into TAG (TAG_ID, TAG_NAME) values (TAG_SEQUENCE.NEXTVAL, 'Polymorphism');
+insert into TAG (TAG_ID, TAG_NAME) values (TAG_SEQUENCE.NEXTVAL, 'Threads');
+insert into TAG (TAG_ID, TAG_NAME) values (TAG_SEQUENCE.NEXTVAL, 'Hibernate');
+insert into TAG (TAG_ID, TAG_NAME) values (TAG_SEQUENCE.NEXTVAL, 'Spring Data');
+insert into TAG (TAG_ID, TAG_NAME) values (TAG_SEQUENCE.NEXTVAL, 'Angular 4');
+insert into TAG (TAG_ID, TAG_NAME) values (TAG_SEQUENCE.NEXTVAL, 'Chad');
+insert into TAG (TAG_ID, TAG_NAME) values (TAG_SEQUENCE.NEXTVAL, 'Lasers');
 
 insert into QUESTION_TAG_LOOKUP (QUESTION_TAG_LOOKUP_ID, TAG_ID, QUESTION_ID) values (QUESTION_TAG_LOOKUP_SEQUENCE.NEXTVAL, 1, 1);
 insert into QUESTION_TAG_LOOKUP (QUESTION_TAG_LOOKUP_ID, TAG_ID, QUESTION_ID) values (QUESTION_TAG_LOOKUP_SEQUENCE.NEXTVAL, 2, 1);
@@ -63,5 +63,5 @@ insert into QUESTION_TAG_LOOKUP (QUESTION_TAG_LOOKUP_ID, TAG_ID, QUESTION_ID) va
 insert into QUESTION_TAG_LOOKUP (QUESTION_TAG_LOOKUP_ID, TAG_ID, QUESTION_ID) values (QUESTION_TAG_LOOKUP_SEQUENCE.NEXTVAL, 5, 4);
 insert into QUESTION_TAG_LOOKUP (QUESTION_TAG_LOOKUP_ID, TAG_ID, QUESTION_ID) values (QUESTION_TAG_LOOKUP_SEQUENCE.NEXTVAL, 5, 5);
 insert into QUESTION_TAG_LOOKUP (QUESTION_TAG_LOOKUP_ID, TAG_ID, QUESTION_ID) values (QUESTION_TAG_LOOKUP_SEQUENCE.NEXTVAL, 6, 1);
-insert into QUESTION_TAG_LOOKUP (QUESTION_TAG_LOOKUP_ID, TAG_ID, QUESTION_ID) values (QUESTION_TAG_LOOKUP_SEQUENCE.NEXTVAL,6, 3);
+insert into QUESTION_TAG_LOOKUP (QUESTION_TAG_LOOKUP_ID, TAG_ID, QUESTION_ID) values (QUESTION_TAG_LOOKUP_SEQUENCE.NEXTVAL, 6, 3);
 
