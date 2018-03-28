@@ -3,6 +3,7 @@ package com.revature.hydra.question.test.unit;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,11 @@ public class QuestionRepositoryTest {
 	
 	private SimpleQuestion q;
 	
+	
+	
 	@Before
 	public final void init() {
+		questionRepository.deleteAll();
 		q = new SimpleQuestion(1, true, "Test question?", "Test answer 1", "Test answer 2",
 				"Test answer 3", "Test answer 4", "Test answer 5");
 		q = questionRepository.save(q);
