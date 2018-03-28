@@ -34,14 +34,10 @@ public class QuestionCompositionService {
 	/**
 	 * Creates a question based on given information
 	 * 
-	 * @param bucketId
-	 *            Id of bucket
-	 * @param questionText
-	 *            Text of question
-	 * @param answers
-	 *            Sample answers to question
-	 * @param tagIds
-	 *            Ids of tags to be associated with question
+	 * @param bucketId Id of bucket
+	 * @param questionText Text of question
+	 * @param answers Sample answers to question
+	 * @param tagIds Ids of tags to be associated with question
 	 */
 	public void createQuestion(QuestionCreate creator) {
 		List<Tag> tags = new ArrayList<>();
@@ -75,10 +71,8 @@ public class QuestionCompositionService {
 	/**
 	 * Filters questions based on inputed list of tagIds and skillTypeId
 	 * 
-	 * @param filter
-	 * 		Filter object which contains tagList and skillTypeId
-	 * @return
-	 * 		List of SimpleQuestion objects
+	 * @param filter Filter object which contains tagList and skillTypeId
+	 * @return List of SimpleQuestion objects
 	 */
 	public List<SimpleQuestion> filterQuestion(Filter filter) {
 		List<Integer> bucketIds = questionCompositionMessagingService.sendBucketIdsRequest(filter.skillTypeId);

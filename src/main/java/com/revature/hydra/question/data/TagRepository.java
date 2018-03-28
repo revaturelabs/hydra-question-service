@@ -24,9 +24,20 @@ public interface TagRepository extends JpaRepository<Tag, Integer> {
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	Tag findByTagId(Integer tagId);
 	
+	/**
+	 * Find the tags with the given ids
+	 * @param tagIds List of tag ids to search for
+	 * @return List of tags with given ids
+	 */
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	List<Tag> findByTagIdIn(List<Integer> tagIds);
 	
+	/**
+	 * Find tag by given name
+	 * 
+	 * @param tagName Name of tag
+	 * @return Tag with given name
+	 */
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	Tag findByTagName(String tagName);
 }

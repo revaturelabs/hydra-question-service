@@ -18,8 +18,7 @@ public interface SimpleQuestionRepository extends JpaRepository<SimpleQuestion, 
 	/**
 	 * Returns question from given Id
 	 * 
-	 * @param questionId 
-	 * 		Id of question
+	 * @param questionId Id of question
 	 * @return SimpleQuestion 
 	 */
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
@@ -28,10 +27,8 @@ public interface SimpleQuestionRepository extends JpaRepository<SimpleQuestion, 
 	/**
 	 * Toggles question status to (in)active based on given information
 	 * 
-	 * @param isActive 
-	 * 		Sets question to active if true, inactive otherwise
-	 * @param questionId 
-	 * 		Id of question to be toggled
+	 * @param isActive Sets question to active if true, inactive otherwise
+	 * @param questionId Id of question to be toggled
 	 */
 	@Modifying(clearAutomatically = true)
 	@Query("update SimpleQuestion q set q.isActive = ?1 where q.questionId = ?2")
@@ -41,7 +38,7 @@ public interface SimpleQuestionRepository extends JpaRepository<SimpleQuestion, 
 	/**
 	 * Returns bucket of given Id
 	 * 
-	 * @param bucketId Id of bucet
+	 * @param bucketId Id of bucket
 	 * @return Bucket of given Id
 	 */
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
@@ -50,10 +47,8 @@ public interface SimpleQuestionRepository extends JpaRepository<SimpleQuestion, 
 	/**
 	 * Gets those questions with the specified questionIds belonging to the specified buckets
 	 * 
-	 * @param questionIds
-	 * 		list of valid questionIds, preferably containing one of several tags
-	 * @param bucketIds
-	 * 		list of valid bucketIds, preferably within the same skillType
+	 * @param questionIds list of valid questionIds, preferably containing one of several tags
+	 * @param bucketIds list of valid bucketIds, preferably within the same skillType
 	 * @return List<SimpleQuestion>
 	 */
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
@@ -63,14 +58,14 @@ public interface SimpleQuestionRepository extends JpaRepository<SimpleQuestion, 
 	/**
 	 * Updates the Question of specified questionId with the bucketId, question and answers specified
 	 * 
-	 * @param bucketId
-	 * @param questionText
-	 * @param answer1
-	 * @param answer2
-	 * @param answer3
-	 * @param answer4
-	 * @param answer5
-	 * @param questionId
+	 * @param bucketId Id of bucket 
+	 * @param questionText Question text
+	 * @param answer1 First sample answer
+	 * @param answer2 Second sample answer
+	 * @param answer3 Third sample answer
+	 * @param answer4 Fourth sample answer
+	 * @param answer5 Fifth sample answer
+	 * @param questionId Id of question
 	 */
 	@Modifying(clearAutomatically = true)
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
