@@ -1,39 +1,54 @@
 # hydra-question-service 
-The Question service handles CRUD operations and messaging for the SimpleQuestion, Tag and QuestionTagLookup beans.
+### The Hydra MSA element for persisting, accessing, and messaging questions, tags, and tag lookup.
 
-Location of Question Related Beans:
+This service contains the following methods for interacting with data:
+* activateQuestion
+  * Description
+    * Using an Integer Id value from the mapping, activate the corresponding Question
+  * Endpoint
+    * /question/activateQuestion/{id}
+* deactivateQuestion
+  * Description
+    * Using an Integer Id value from the mapping, deactivate the corresponding Question
+  * Endpoint
+    * /question/deactivateQuestion/{id}
+* getBucketQuestions
+  * Description
+    * Using an Integer bucketId value from the mapping, return the Questions corresponding to that bucket
+  * Endpoint
+    * /question/bucketQuestions/{bucketId}
+* createQuestion
+  * Description
+    * Taking in the Integer bucketID, Question text, an array of Question Answers and an Integer array of TagIDs within the RequestBody, create and store a new Question and the corresponding QuestionTagLookups
+  * Endpoint
+    * /question/createQuestion
+* filterQuestions
+  * Description
+    * Returns a List of Questions responding to the given skillTypeId and tags in a RequestBody
+  * Endpoint
+    * /question/filtered
+* updateQuestion
+  * Description
+    * Consumes a RequestBody as a SimpleQuestion and updates the corresponding entry in the database with the new values.
+  * Endpoint
+    * /question/updateQuestion
+* getAllTags
+  * Description
+    * Returns all tags in the Tag table.
+  * Endpoint
+    * /tag/getAllTags
+* createNewTag
+  * Description
+    * Taking in the tagName value within the RequestBody, create and store the new Tag
+  * Endpoint	
+    * /tag/createNewTag
+* getTagsByQuestionId
+  * Description
+    * Returns all tags that are related to the given questionId
+  * Endpoint
+    * /tag/getTagByQuestionId/{id}
 
-	com.revature.beans
-
-Question Specific Beans:
-
-	SimpleQuestion
-
-	QuestionTagLookup
-
-	Tag
-	
-
-Methods contained within this service:
-
-**QuestionController - Found in com/revature/hydra/question/controller/**
-The QuestionController is where the Question service end points are defined.
-
-End Points
-* /question/activateQuestion/{id}
-	Using an Integer Id value from the mapping, activate the corresponding Question
-* /question/deactivateQuestion/{id}
-	Using an Integer Id value from the mapping, deactivate the corresponding Question
-* /question/bucketQuestions/{bucketId}
-	Using an Integer bucketId value from the mapping, return the Questions corresponding to that bucket
-* /question/createQuestion
-	Taking in the Integer bucketID, Question text, an array of Question Answers and an Integer array of TagIDs within the 		RequestBody, create and store a new Question and the corresponding QuestionTagLookups
-* /tag/getTags
-	Returns all tags in the Tag table
-* /tag/createNewTag
-	Taking in the tagName value within the RequestBody, create and store the new Tag
-
-QuestionCompositionService 
-
-	createQuestion
+The Question service communicates with the following services:
+* Bucket
+* QuestionScore
 	
