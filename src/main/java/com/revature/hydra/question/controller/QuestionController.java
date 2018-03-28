@@ -20,6 +20,7 @@ import com.revature.hydra.question.data.SimpleQuestionRepository;
 import com.revature.hydra.question.service.QuestionCompositionService;
 import com.revature.wrappers.Filter;
 import com.revature.wrappers.QuestionCreate;
+import com.revature.wrappers.QuestionUpdate;
 
 @RestController
 @CrossOrigin
@@ -101,16 +102,15 @@ public class QuestionController {
 	}
 	
 	/**
-	 * Updates Question with given Id with the passed values of object
+	 * Updates Question with passed values of simpleQuestion and new tagIds
 	 * 
 	 * @param q
-	 * 		SimpleQuestion object to be updated based on questionId
+	 * 		QuestionUpdate object containing SimpleQuestion and Integer TagIds
 	 */
 	@RequestMapping(value = "/question/updateQuestion", method = RequestMethod.POST)
-	public ResponseEntity<Void> updateQuestion(@RequestBody SimpleQuestion q) {
-		log.info("Updating question: " + q.getQuestionId());
-		questionRepository.updateQuestion(q.getBucketId(), q.getQuestionText(), q.getSampleAnswer1(), q.getSampleAnswer2(),
-				q.getSampleAnswer3(), q.getSampleAnswer4(), q.getSampleAnswer5(), q.getQuestionId());
+	public ResponseEntity<Void> updateQuestion(@RequestBody QuestionUpdate q) {
+		log.info("Updating question: " + q.question.getQuestionId());
+		questionCompositionService.updateQuestion(q);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 }

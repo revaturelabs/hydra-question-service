@@ -130,5 +130,4 @@ public class SimpleQuestion implements Serializable {
 	public SimpleQuestion() {
 		super();
 	}
-	
 }

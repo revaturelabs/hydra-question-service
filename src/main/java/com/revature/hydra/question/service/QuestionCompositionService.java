@@ -14,6 +14,7 @@ import com.revature.hydra.question.data.SimpleQuestionRepository;
 import com.revature.hydra.question.data.TagRepository;
 import com.revature.wrappers.Filter;
 import com.revature.wrappers.QuestionCreate;
+import com.revature.wrappers.QuestionUpdate;
 
 @Service
 public class QuestionCompositionService {
@@ -52,6 +53,21 @@ public class QuestionCompositionService {
 		q = questionRepository.save(q);
 		for (Tag t : tags) {
 			QuestionTagLookup qtl = new QuestionTagLookup(t, q);
+			questionTagLookupRepository.save(qtl);
+		}
+	}
+	
+	public void updateQuestion(QuestionUpdate q) {
+		questionRepository.updateQuestion(q.question.getBucketId(), q.question.getQuestionText(), q.question.getSampleAnswer1(), 
+				q.question.getSampleAnswer2(), q.question.getSampleAnswer3(), q.question.getSampleAnswer4(),
+				q.question.getSampleAnswer5(), q.question.getQuestionId());
+		questionTagLookupRepository.deleteByQuestionId(q.question.getQuestionId());
+		List<Tag> tags = new ArrayList<>();
+		for (Integer i : q.tagIds) {
+			tags.add(tagRepository.findByTagId(i));
+		}
+		for (Tag t : tags) {
+			QuestionTagLookup qtl = new QuestionTagLookup(t, q.question);
 			questionTagLookupRepository.save(qtl);
 		}
 	}
