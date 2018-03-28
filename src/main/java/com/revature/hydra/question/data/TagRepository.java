@@ -39,5 +39,5 @@ public interface TagRepository extends JpaRepository<Tag, Integer> {
 	 * @return Tag with given name
 	 */
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	Tag findByTagName(String tagName);
+	List<Tag> findByTagName(String tagName);
 }
