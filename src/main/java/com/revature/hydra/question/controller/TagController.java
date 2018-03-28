@@ -8,12 +8,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.beans.Tag;
+import com.revature.hydra.question.data.QuestionTagLookupRepository;
 import com.revature.hydra.question.data.TagRepository;
 
 @RestController
@@ -24,6 +26,9 @@ public class TagController {
 	
 	@Autowired
 	private TagRepository tagRepository;
+	
+	@Autowired
+	private QuestionTagLookupRepository questionTagLookupRepository;
 	
 	/**
 	 * Returns all tags
@@ -40,14 +45,24 @@ public class TagController {
 	 * Creates tag by given name
 	 * 
 	 * @param tagName Name of tag to be created
-	 * @return No content
+	 * @return Tag tag that was created
 	 */
 	@RequestMapping(value = "/tag/createNewTag", method = RequestMethod.POST)
-	public ResponseEntity<Void> createNewTag(@RequestParam(value="tagName") String tagName) {
-		log.info("Creating tag: " + tagName);
-		Tag t = new Tag(tagName);
+	public ResponseEntity<Tag> createNewTag(@RequestBody Tag tag) {
+		log.info("Creating tag: " + tag.getTagName());
+		Tag t = new Tag(tag.getTagName());
 		tagRepository.save(t);
-		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(tagRepository.findByTagName(tag.getTagName()).get(0), HttpStatus.NO_CONTENT);
 	}
 	
+	/**
+	 * Returns the list of tags associated with the given question id
+	 * 
+	 * @param questionId Id of question
+	 * @return List of tags associated with given id
+	 */
+	@RequestMapping(value = "/tag/getTagByQuestionId/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Tag>> getTagsByQuestionId(@PathVariable(value="id") Integer questionId) {
+		return new ResponseEntity<>(questionTagLookupRepository.getTagByQuestionId(questionId), HttpStatus.OK);
+	}
 }

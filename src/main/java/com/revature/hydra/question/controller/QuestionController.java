@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.beans.SimpleQuestion;
@@ -20,9 +20,11 @@ import com.revature.hydra.question.data.SimpleQuestionRepository;
 import com.revature.hydra.question.service.QuestionCompositionService;
 import com.revature.wrappers.Filter;
 import com.revature.wrappers.QuestionCreate;
+import com.revature.wrappers.QuestionUpdate;
 
 @RestController
 @CrossOrigin
+@ComponentScan("com.revature.hydra.question.*")
 public class QuestionController {
 	
 	private static final Logger log = Logger.getLogger(QuestionController.class);
@@ -68,7 +70,7 @@ public class QuestionController {
 	@RequestMapping(value = "/question/bucketQuestions/{bucketId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<SimpleQuestion>> getBucketQuestions(@PathVariable(value="bucketId") Integer bucketId) {
 		log.info("Getting questions for bucket: " + bucketId);
-		return new ResponseEntity<>(questionRepository.findByBucketId(bucketId), HttpStatus.FOUND);
+		return new ResponseEntity<>(questionRepository.findByBucketId(bucketId), HttpStatus.OK);
 	}
 	
 	/**
@@ -87,9 +89,28 @@ public class QuestionController {
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
-/*	@RequestMapping(value = "/question/filtered", method = RequestMethod.POST)
+	 /**
+	  * Returns questions belonging to a specific skillType and containing specific tags
+	  * 
+	  * @param filter object containing skillTypeId and tagList
+	  * @return List of SimpleQuestion objects
+	  */
+	@RequestMapping(value = "/question/filtered", method = RequestMethod.POST)
 	public ResponseEntity<List<SimpleQuestion>> filterQuestions(@RequestBody Filter filter) {
-		log.info("Filtering questions by skillType: " + filter.skillTypeID + " and tags: " + filter.tagList);
+		log.info("Filtering questions by skillType: " + filter.skillTypeId + " and tags: " + filter.tagList);
 		return new ResponseEntity<>(questionCompositionService.filterQuestion(filter), HttpStatus.OK);
-	}*/
+	}
+	
+	/**
+	 * Updates Question with passed values of simpleQuestion and new tagIds
+	 * 
+	 * @param q
+	 * 		QuestionUpdate object containing SimpleQuestion and Integer TagIds
+	 */
+	@RequestMapping(value = "/question/updateQuestion", method = RequestMethod.POST)
+	public ResponseEntity<Void> updateQuestion(@RequestBody QuestionUpdate q) {
+		log.info("Updating question: " + q.question.getQuestionId());
+		questionCompositionService.updateQuestion(q);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
 }

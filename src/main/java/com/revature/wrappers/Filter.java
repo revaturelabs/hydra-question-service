@@ -1,6 +1,8 @@
 package com.revature.wrappers;
 
+import java.util.List;
+
 public class Filter {
-	public Integer[] tagList;
-	public String skillTypeID;
+	public List<Integer> tagList;
+	public Integer skillTypeId;
 }
