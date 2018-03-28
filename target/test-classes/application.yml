@@ -1,0 +1,19 @@
+security:
+  basic:
+    enabled: false
+spring:
+  application:
+    name: hydra-question-service
+  jpa:
+    database-platform : org.hibernate.dialect.Oracle10gDialect
+  h2:
+    console:
+      enabled: true
+  datasource:
+    platform: h2
+    url: jdbc:h2:mem:testdb;MODE=Oracle
+
+eureka:
+  client:
+    enabled: false
+    
