@@ -16,7 +16,6 @@ import org.springframework.web.servlet.view.JstlView;
 import java.util.Properties;
 
 @Configuration
-@EnableWebMvc
 @ComponentScan(basePackages = { "com.revature" })
 public class WebAppContext extends WebMvcConfigurerAdapter {
 	@Override
