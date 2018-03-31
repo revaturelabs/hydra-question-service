@@ -1,14 +1,13 @@
 package com.revature.hydra.test.util;
 
+import javax.servlet.ServletContext;
+
 import org.mockito.Mockito;
 import org.springframework.amqp.core.AmqpTemplate;
-import org.springframework.context.MessageSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ResourceBundleMessageSource;
-
-import com.revature.hydra.question.data.SimpleQuestionRepository;
-import com.revature.hydra.question.service.QuestionCompositionService;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
  
 @Configuration
 public class TestContext {
@@ -22,6 +21,21 @@ public class TestContext {
 	public SimpleQuestionRepository simpleQuestionRepository() {
 		return Mockito.mock(SimpleQuestionRepository.class);
 	}*/
+	
+	@Autowired
+	ServletContext context;    
+	
+	@Bean
+	public ServletContext getServletContext() {
+	  return context;
+	}
+	
+	@Bean
+    public RequestMappingHandlerMapping requestMappingHandlerMapping() {
+       RequestMappingHandlerMapping mapping = new RequestMappingHandlerMapping();
+       // add properties here
+       return mapping;
+    }
 	
 	@Bean
 	public AmqpTemplate amqpTemplate() {
